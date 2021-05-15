@@ -32,3 +32,34 @@ export const listNotes = /* GraphQL */ `
     }
   }
 `;
+export const getPhrase = /* GraphQL */ `
+  query GetPhrase($id: ID!) {
+    getPhrase(id: $id) {
+      id
+      word
+      description
+      image
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listPhrases = /* GraphQL */ `
+  query ListPhrases(
+    $filter: ModelphraseFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listPhrases(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        word
+        description
+        image
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;

@@ -46,3 +46,48 @@ export const deleteNote = /* GraphQL */ `
     }
   }
 `;
+export const createPhrase = /* GraphQL */ `
+  mutation CreatePhrase(
+    $input: CreatePhraseInput!
+    $condition: ModelphraseConditionInput
+  ) {
+    createPhrase(input: $input, condition: $condition) {
+      id
+      word
+      description
+      image
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updatePhrase = /* GraphQL */ `
+  mutation UpdatePhrase(
+    $input: UpdatePhraseInput!
+    $condition: ModelphraseConditionInput
+  ) {
+    updatePhrase(input: $input, condition: $condition) {
+      id
+      word
+      description
+      image
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deletePhrase = /* GraphQL */ `
+  mutation DeletePhrase(
+    $input: DeletePhraseInput!
+    $condition: ModelphraseConditionInput
+  ) {
+    deletePhrase(input: $input, condition: $condition) {
+      id
+      word
+      description
+      image
+      createdAt
+      updatedAt
+    }
+  }
+`;

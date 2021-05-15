@@ -2,92 +2,120 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import { API, Storage } from 'aws-amplify';
 import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
-import { listNotes } from './graphql/queries';
-import { createNote as createNoteMutation, deleteNote as deleteNoteMutation } from './graphql/mutations';
-
-const initialFormState = { name: '', description: '' }
+import { listPhrases } from './graphql/queries';
+import { createPhrase as createPhraseMutation, deletePhrase as deletePhraseMutation } from './graphql/mutations';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCloudUploadAlt, faTimes } from '@fortawesome/free-solid-svg-icons'
+const initialFormState = { word: '', description: '' }
 
 function App() {
-  const [notes, setNotes] = useState([]);
+  const [phrases, setPhrases] = useState([]);
   const [formData, setFormData] = useState(initialFormState);
-
+  const [uploadStatus, setUploadStatus] = useState("Optional: Upload Photo")
   useEffect(() => {
-    fetchNotes();
+    fetchPhrases();
   }, []);
 
-  async function fetchNotes() {
-    const apiData = await API.graphql({ query: listNotes });
-    const notesFromAPI = apiData.data.listNotes.items;
-    await Promise.all(notesFromAPI.map(async note => {
-      if (note.image) {
-        const image = await Storage.get(note.image);
-        note.image = image;
+  async function fetchPhrases() {
+    const apiData = await API.graphql({ query: listPhrases });
+    const phrasesFromAPI = apiData.data.listPhrases.items;
+    await Promise.all(phrasesFromAPI.map(async phrase => {
+      if (phrase.image) {
+        const image = await Storage.get(phrase.image);
+        phrase.image = image;
       }
-      return note;
+      return phrase;
     }))
-    setNotes(apiData.data.listNotes.items);
+    setPhrases(apiData.data.listPhrases.items);
   }
 
-  async function createNote() {
-    if (!formData.name || !formData.description) return;
-    await API.graphql({ query: createNoteMutation, variables: { input: formData } });
+  async function createPhrase() {
+    if (!formData.word || !formData.description) {
+      alert("Missing required* input")
+      return
+    };
+    await API.graphql({ query: createPhraseMutation, variables: { input: formData } });
     if (formData.image) {
       const image = await Storage.get(formData.image);
       formData.image = image;
     }
-    setNotes([...notes, formData]);
+    setPhrases([...phrases, formData]);
     setFormData(initialFormState);
+    setUploadStatus("Upload Photo")
   }
 
-  async function deleteNote({ id }) {
-    const newNotesArray = notes.filter(note => note.id !== id);
-    setNotes(newNotesArray);
-    await API.graphql({ query: deleteNoteMutation, variables: { input: { id } } });
+  async function deletePhrase({ id }) {
+    const newPhrasesArray = phrases.filter(phrase => phrase.id !== id);
+    setPhrases(newPhrasesArray);
+    await API.graphql({ query: deletePhraseMutation, variables: { input: { id } } });
+    fetchPhrases();
   }
 
   async function onChange(e) {
     if (!e.target.files[0]) return
     const file = e.target.files[0];
-    setFormData({ ...formData, image: file.name });
-    await Storage.put(file.name, file);
-    fetchNotes();
+    setFormData({ ...formData, image: file.word });
+    await Storage.put(file.word, file);
+    setUploadStatus("File Ready for Upload")
+    fetchPhrases();
   }
 
   return (
     <div className="App">
-      <AmplifySignOut />
-      <h1>My Notes App</h1>
-      <input
-        onChange={e => setFormData({ ...formData, 'name': e.target.value })}
-        placeholder="Note name"
-        value={formData.name}
-      />
-      <input
-        onChange={e => setFormData({ ...formData, 'description': e.target.value })}
-        placeholder="Note description"
-        value={formData.description}
-      />
-      <input
-        type="file"
-        onChange={onChange}
-      />
-      <button onClick={createNote}>Create Note</button>
-      <div style={{ marginBottom: 30 }}>
+      <div className="header">
+        <h1 className="title">Language for Dummies</h1>
+
+      </div>
+
+      <div className="flex-container user-input">
+
+        <input
+          className="ninety-percent-width"
+          onChange={e => setFormData({ ...formData, 'word': e.target.value })}
+          placeholder="Phrase word*"
+          value={formData.word}
+
+        />
+        <input
+          className="ninety-percent-width"
+          onChange={e => setFormData({ ...formData, 'description': e.target.value })}
+          placeholder="Phrase description*"
+          value={formData.description}
+
+        />
+        <div className="two-btn-container">
+          <label htmlFor="file-upload" className="file-upload">
+            <FontAwesomeIcon className="fa-cloud-upload-alt" icon={faCloudUploadAlt} size="lg" /> {uploadStatus}
+          </label>
+          <input
+            id="file-upload"
+            type="file"
+            onChange={onChange}
+          />
+
+
+          <button className="button5" onClick={createPhrase}>Create Phrase for Alexa</button>
+
+        </div>
+      </div>
+      <div className="flex-container phrases" style={{ marginBottom: 30 }} >
         {
-          notes.map(note => (
-            <div key={note.id || note.name}>
-              <h2>{note.name}</h2>
-              <p>{note.description}</p>
-              <button onClick={() => deleteNote(note)}>Delete note</button>
+          phrases.map(phrase => (
+            <div key={phrase.id || phrase.word}>
+              <button className="delete-x" onClick={() => deletePhrase(phrase)}><FontAwesomeIcon icon={faTimes}></FontAwesomeIcon></button>
+              <span>{phrase.word} : </span>
+              <span>{phrase.description}</span>
               {
-                note.image && <img src={note.image} style={{ width: 400 }} />
+                phrase.image && <img src={phrase.image} />
               }
             </div>
           ))
         }
       </div>
-
-    </div>
+      <div className="footer">
+        <AmplifySignOut />
+      </div>
+    </div >
   );
 }
 
