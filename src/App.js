@@ -41,21 +41,21 @@ function App() {
     }
     setPhrases([...phrases, formData]);
     setFormData(initialFormState);
-    setUploadStatus("Upload Photo")
+    setUploadStatus("Optional: Upload Photo")
   }
 
   async function deletePhrase({ id }) {
     const newPhrasesArray = phrases.filter(phrase => phrase.id !== id);
     setPhrases(newPhrasesArray);
     await API.graphql({ query: deletePhraseMutation, variables: { input: { id } } });
-    fetchPhrases();
+
   }
 
   async function onChange(e) {
     if (!e.target.files[0]) return
     const file = e.target.files[0];
-    setFormData({ ...formData, image: file.word });
-    await Storage.put(file.word, file);
+    setFormData({ ...formData, image: file.name });
+    await Storage.put(file.name, file);
     setUploadStatus("File Ready for Upload")
     fetchPhrases();
   }

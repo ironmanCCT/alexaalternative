@@ -1,11 +1,4 @@
-type Note @model @auth(rules: [{ allow: public }]) {
-  id: ID!
-  name: String!
-  description: String
-  image: String
-}
-
-type phrase @model @auth(rules: [{ allow: public }]) {
+type Phrase @model @auth(rules: [{ allow: public }]) {
   id: ID!
   word: String!
   description: String

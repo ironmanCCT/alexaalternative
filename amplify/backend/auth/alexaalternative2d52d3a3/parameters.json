@@ -1,6 +1,6 @@
 {
     "identityPoolName": "alexaalternative2d52d3a3_identitypool_2d52d3a3",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "alexaa2d52d3a3",
     "userPoolName": "alexaalternative2d52d3a3_userpool_2d52d3a3",
     "autoVerifiedAttributes": [
