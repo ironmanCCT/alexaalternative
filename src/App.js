@@ -66,52 +66,60 @@ function App() {
         <h1 className="title">Language for Dummies</h1>
 
       </div>
+      <div class="content">
 
-      <div className="flex-container user-input">
+        <div className="flex-container user-input">
 
-        <input
-          className="ninety-percent-width"
-          onChange={e => setFormData({ ...formData, 'word': e.target.value })}
-          placeholder="Phrase word*"
-          value={formData.word}
-
-        />
-        <input
-          className="ninety-percent-width"
-          onChange={e => setFormData({ ...formData, 'description': e.target.value })}
-          placeholder="Phrase description*"
-          value={formData.description}
-
-        />
-        <div className="two-btn-container">
-          <label htmlFor="file-upload" className="file-upload">
-            <FontAwesomeIcon className="fa-cloud-upload-alt" icon={faCloudUploadAlt} size="lg" /> {uploadStatus}
-          </label>
           <input
-            id="file-upload"
-            type="file"
-            onChange={onChange}
+            className="ninety-percent-width"
+            onChange={e => setFormData({ ...formData, 'word': e.target.value })}
+            placeholder="Phrase word*"
+            value={formData.word}
+
           />
+          <input
+            className="ninety-percent-width"
+            onChange={e => setFormData({ ...formData, 'description': e.target.value })}
+            placeholder="Phrase description*"
+            value={formData.description}
+
+          />
+          <div className="two-btn-container">
+
+            <label htmlFor="file-upload" className="file-upload">
+              <FontAwesomeIcon className="fa-cloud-upload-alt" icon={faCloudUploadAlt} size="2x" />
+              <span> {uploadStatus} </span>
+            </label>
 
 
-          <button className="button5" onClick={createPhrase}>Create Phrase for Alexa</button>
 
+            <input
+              id="file-upload"
+              type="file"
+              onChange={onChange}
+            />
+
+
+            <button className="button5" onClick={createPhrase}>Create Phrase for Alexa</button>
+
+          </div>
+        </div>
+        <div className="flex-container phrases" style={{ marginBottom: 30 }} >
+          {
+            phrases.map(phrase => (
+              <div key={phrase.id || phrase.word}>
+                <button className="delete-x" onClick={() => deletePhrase(phrase)}><FontAwesomeIcon icon={faTimes}></FontAwesomeIcon></button>
+                <span>{phrase.word} : </span>
+                <span>{phrase.description}</span>
+                {
+                  phrase.image && <img src={phrase.image} />
+                }
+              </div>
+            ))
+          }
         </div>
       </div>
-      <div className="flex-container phrases" style={{ marginBottom: 30 }} >
-        {
-          phrases.map(phrase => (
-            <div key={phrase.id || phrase.word}>
-              <button className="delete-x" onClick={() => deletePhrase(phrase)}><FontAwesomeIcon icon={faTimes}></FontAwesomeIcon></button>
-              <span>{phrase.word} : </span>
-              <span>{phrase.description}</span>
-              {
-                phrase.image && <img src={phrase.image} />
-              }
-            </div>
-          ))
-        }
-      </div>
+
       <div className="footer">
         <AmplifySignOut />
       </div>
