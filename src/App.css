@@ -3,25 +3,36 @@
   display: flex;
   flex-direction: column;
 }
-
+* {
+  border-radius: 4px;
+}
 .content {
   flex: 1 0 auto;
 }
 .header {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   text-align: center;
   font-size: calc(0.7rem);
   font-family: "Roboto", sans-serif;
   background-color: #2457b4;
   color: #ffffff;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   padding: 2px;
 }
 
+.title {
+  flex-grow: 2;
+  display: flex;
+  justify-content: center;
+}
 .footer {
   flex-shrink: 0;
+}
+
+h2 {
+  text-align: center;
 }
 .flex-container {
   display: flex;
@@ -35,6 +46,9 @@
 input {
   margin: 4px;
 }
+input:hover {
+  background-color: antiquewhite;
+}
 .phrases {
   flex-direction: column;
   justify-content: center;
@@ -43,6 +57,9 @@ input {
 div.phrases > div > span {
   margin: 0.1% 0.5%;
   font-size: clamp(0.9rem, 2.5vw, 2rem);
+}
+div.flex-container.user-input > div > label {
+  font-size: clamp(0.7rem, 2.5vw, 1.5rem);
 }
 div.flex-container.user-input > div > label > span {
   margin: 0.1% 0.5%;
@@ -82,6 +99,12 @@ div.flex-container.phrases > div > img {
   background-color: #00da00;
 }
 
+label:hover {
+  text-shadow: 0 0 2em rgba(255, 255, 255, 1);
+  color: #ffffff;
+  border-color: #ffffff;
+  background-color: #00da00;
+}
 @media all and (max-width: 30em) {
    button5 {
     margin: 0.4em auto;
@@ -127,6 +150,9 @@ input[type="file"] {
   border-radius: 5px;
 }
 
+.delete-x:hover {
+  background-color: red;
+}
 .fa-cloud-upload-alt {
   margin: 0 0.2em;
 }

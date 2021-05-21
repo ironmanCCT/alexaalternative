@@ -64,9 +64,10 @@ function App() {
     <div className="App">
       <div className="header">
         <h1 className="title">Language for Dummies</h1>
-
+        <AmplifySignOut />
       </div>
       <div class="content">
+        <h2>Create Phrase</h2>
 
         <div className="flex-container user-input">
 
@@ -104,6 +105,7 @@ function App() {
 
           </div>
         </div>
+        <h2>Phrases and Words</h2>
         <div className="flex-container phrases" style={{ marginBottom: 30 }} >
           {
             phrases.map(phrase => (
@@ -121,7 +123,7 @@ function App() {
       </div>
 
       <div className="footer">
-        <AmplifySignOut />
+
       </div>
     </div >
   );
