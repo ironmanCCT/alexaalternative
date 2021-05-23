@@ -45,6 +45,7 @@ h2 {
 }
 input {
   margin: 4px;
+  min-height: 2rem;
 }
 input:hover {
   background-color: antiquewhite;
