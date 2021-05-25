@@ -6,19 +6,18 @@ import { listPhrases } from './graphql/queries';
 import { createPhrase as createPhraseMutation, deletePhrase as deletePhraseMutation } from './graphql/mutations';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCloudUploadAlt, faTimes } from '@fortawesome/free-solid-svg-icons'
-import FlexHorizontalComponents from './components/FlexHorizontalComponents'
+import AmazonAdvertisementCustom from './components/AmazonAdvertisementCustom'
+import AmazonAdvertisement from './components/AmazonAdvertisement'
 const initialFormState = { word: '', description: '' }
 
 const divs = [
-  '<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ac&ref=tf_til&ad_type=product_link&tracking_id=amazonmaxist-20&marketplace=amazon&amp;region=US&placement=B079QHML21&asins=B079QHML21&linkId=8252290a5d721949708de87f42696902&show_border=false&link_opens_in_new_window=true&price_color=333333&title_color=0066c0&bg_color=ffffff"></iframe>'
-  , '<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ac&ref=tf_til&ad_type=product_link&tracking_id=amazonmaxist-20&marketplace=amazon&amp;region=US&placement=B07XJ8C8F5&asins=B07XJ8C8F5&linkId=1ff12f1a1a18f001e35eecd99673d9df&show_border=false&link_opens_in_new_window=true&price_color=333333&title_color=0066c0&bg_color=ffffff"></iframe>'
-  , '<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ac&ref=tf_til&ad_type=product_link&tracking_id=amazonmaxist-20&marketplace=amazon&amp;region=US&placement=B07FZ8S74R&asins=B07FZ8S74R&linkId=a5f51434ccb78709154f7a31909c380a&show_border=false&link_opens_in_new_window=true&price_color=333333&title_color=0066c0&bg_color=ffffff"></iframe>'
-  , '<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ac&ref=tf_til&ad_type=product_link&tracking_id=amazonmaxist-20&marketplace=amazon&amp;region=US&placement=B07XJ8C8F7&asins=B07XJ8C8F7&linkId=ea17bbd29c74afe845f1497f11892d86&show_border=false&link_opens_in_new_window=true&price_color=333333&title_color=0066c0&bg_color=ffffff"></iframe>'
-  , '<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ac&ref=tf_til&ad_type=product_link&tracking_id=amazonmaxist-20&marketplace=amazon&amp;region=US&placement=B084DCJKSL&asins=B084DCJKSL&linkId=f9c33f58b462e6e0dc4870f65c5e45cd&show_border=false&link_opens_in_new_window=true&price_color=333333&title_color=0066c0&bg_color=ffffff"></iframe>'
-  , '<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ac&ref=tf_til&ad_type=product_link&tracking_id=amazonmaxist-20&marketplace=amazon&amp;region=US&placement=B07HZLHPKP&asins=B07HZLHPKP&linkId=af784cf12ce06d0534e265c4a5fb9540&show_border=false&link_opens_in_new_window=true&price_color=333333&title_color=0066c0&bg_color=ffffff"></iframe>'
-  , '<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ac&ref=tf_til&ad_type=product_link&tracking_id=amazonmaxist-20&marketplace=amazon&amp;region=US&placement=B07XKF5RM3&asins=B07XKF5RM3&linkId=a9b5121af2795061a40b607b84d06a27&show_border=false&link_opens_in_new_window=true&price_color=333333&title_color=0066c0&bg_color=ffffff"></iframe>'
-
+  '<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ac&ref=tf_til&ad_type=product_link&tracking_id=amazonmaxist-20&marketplace=amazon&amp;region=US&placement=B08CW368CJ&asins=B08CW368CJ&linkId=a6b43f3b857c8d33d4ac9dcc782a3543&show_border=true&link_opens_in_new_window=true&price_color=333333&title_color=0066c0&bg_color=ffffff"></iframe>'
+  , '<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ac&ref=tf_til&ad_type=product_link&tracking_id=amazonmaxist-20&marketplace=amazon&amp;region=US&placement=B07VWP4FLG&asins=B07VWP4FLG&linkId=4bd741a6056797c11a05f9e5889e0f01&show_border=true&link_opens_in_new_window=true&price_color=333333&title_color=0066c0&bg_color=ffffff"></iframe>'
+  , '<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ac&ref=tf_til&ad_type=product_link&tracking_id=amazonmaxist-20&marketplace=amazon&amp;region=US&placement=B01N0Y5BWX&asins=B01N0Y5BWX&linkId=54ed28adff07522a3e7adafe20710348&show_border=true&link_opens_in_new_window=true&price_color=333333&title_color=0066c0&bg_color=ffffff"></iframe>'
+  , '<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ac&ref=tf_til&ad_type=product_link&tracking_id=amazonmaxist-20&marketplace=amazon&amp;region=US&placement=B08J3QVQ4P&asins=B08J3QVQ4P&linkId=a7b27eaf4e51c3c4e956fd4541581341&show_border=true&link_opens_in_new_window=true&price_color=333333&title_color=0066c0&bg_color=ffffff"></iframe>'
+  , ''
 ]
+
 function App() {
   const [phrases, setPhrases] = useState([]);
   const [formData, setFormData] = useState(initialFormState);
@@ -77,8 +76,8 @@ function App() {
         <h1 className="title">Language for Dummies</h1>
         <AmplifySignOut />
       </div>
-      <div class="content">
-        <h2>Create Phrase</h2>
+      <div className="content">
+        <h1>Create Phrase</h1>
 
         <div className="flex-container user-input">
 
@@ -116,7 +115,7 @@ function App() {
 
           </div>
         </div>
-        <h2>Phrases and Words</h2>
+        <h1>Phrases and Words</h1>
         <div className="flex-container phrases" style={{ marginBottom: 30 }} >
           {
             phrases.map(phrase => (
@@ -133,10 +132,11 @@ function App() {
         </div>
       </div>
 
-      <FlexHorizontalComponents divs={divs}>
-      </FlexHorizontalComponents>
+      <AmazonAdvertisementCustom divs={divs}>
+      </AmazonAdvertisementCustom>
+      <AmazonAdvertisement></AmazonAdvertisement>
       <div className="footer">
-        <h3>Site Map</h3>
+        <h1>Site Map</h1>
         <a href="https://smile.amazon.com">amazon.com</a>
       </div>
 
