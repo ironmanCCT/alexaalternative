@@ -135,10 +135,13 @@ function App() {
           }
         </div>
       </div>
+      <h3>You must disable ad-block to see affiliate links</h3>
+
 
       <AmazonAdvertisementCustom divs={divs}>
       </AmazonAdvertisementCustom>
       <AmazonAdvertisement></AmazonAdvertisement>
+
       <div className="footer">
         <h1>Site Map</h1>
         <a href="https://smile.amazon.com">amazon.com</a>

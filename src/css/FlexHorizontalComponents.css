@@ -1,6 +1,10 @@
-.FlexHorizontal {
+.flex-direction-horizontal {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-content: stretch;
+}
+
+.flex-justify-content-center {
+  justify-content: center;
 }
