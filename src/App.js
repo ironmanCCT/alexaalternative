@@ -12,14 +12,7 @@ const initialFormState = { word: '', description: '' }
 
 const divs = [
   '<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ac&ref=tf_til&ad_type=product_link&tracking_id=amazonmaxist-20&marketplace=amazon&amp;region=US&placement=B08CW368CJ&asins=B08CW368CJ&linkId=a6b43f3b857c8d33d4ac9dcc782a3543&show_border=true&link_opens_in_new_window=true&price_color=333333&title_color=0066c0&bg_color=ffffff"></iframe>'
-  , '<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ac&ref=tf_til&ad_type=product_link&tracking_id=amazonmaxist-20&marketplace=amazon&amp;region=US&placement=B07VWP4FLG&asins=B07VWP4FLG&linkId=4bd741a6056797c11a05f9e5889e0f01&show_border=true&link_opens_in_new_window=true&price_color=333333&title_color=0066c0&bg_color=ffffff"></iframe>'
-  , '<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ac&ref=tf_til&ad_type=product_link&tracking_id=amazonmaxist-20&marketplace=amazon&amp;region=US&placement=B01N0Y5BWX&asins=B01N0Y5BWX&linkId=54ed28adff07522a3e7adafe20710348&show_border=true&link_opens_in_new_window=true&price_color=333333&title_color=0066c0&bg_color=ffffff"></iframe>'
-  , '<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ac&ref=tf_til&ad_type=product_link&tracking_id=amazonmaxist-20&marketplace=amazon&amp;region=US&placement=B08J3QVQ4P&asins=B08J3QVQ4P&linkId=a7b27eaf4e51c3c4e956fd4541581341&show_border=true&link_opens_in_new_window=true&price_color=333333&title_color=0066c0&bg_color=ffffff"></iframe>'
-  , '<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ac&ref=tf_til&ad_type=product_link&tracking_id=amazonmaxist-20&marketplace=amazon&amp;region=US&placement=B00451U9Q0&asins=B00451U9Q0&linkId=bb773a30bc6c6c10cad81f4325b1b157&show_border=true&link_opens_in_new_window=true&price_color=333333&title_color=0066c0&bg_color=ffffff"></iframe>'
-  , '<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ac&ref=tf_til&ad_type=product_link&tracking_id=amazonmaxist-20&marketplace=amazon&amp;region=US&placement=B091V5V2V8&asins=B091V5V2V8&linkId=ff5699cdfec5a6f802b2194ec764aa6a&show_border=true&link_opens_in_new_window=true&price_color=333333&title_color=0066c0&bg_color=ffffff"></iframe>'
-  , '<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ac&ref=tf_til&ad_type=product_link&tracking_id=amazonmaxist-20&marketplace=amazon&amp;region=US&placement=B07TY3N23Q&asins=B07TY3N23Q&linkId=f92c7209cb0a97dd3941392530e4c04b&show_border=true&link_opens_in_new_window=true&price_color=333333&title_color=0066c0&bg_color=ffffff"></iframe>'
-  , '<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ac&ref=tf_til&ad_type=product_link&tracking_id=amazonmaxist-20&marketplace=amazon&amp;region=US&placement=B0783NJ9BQ&asins=B0783NJ9BQ&linkId=84acb6e6be519acfd30af08ea91e9030&show_border=true&link_opens_in_new_window=true&price_color=333333&title_color=0066c0&bg_color=ffffff"></iframe>'
-  , ''
+  , '<iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ss&ref=as_ss_li_til&ad_type=product_link&tracking_id=amazonmaxist-20&language=en_US&marketplace=amazon&region=US&placement=B08CVTTNN4&asins=B08CVTTNN4&linkId=9110bd9711ae871d2ed7b8d2d1ed6e39&show_border=true&link_opens_in_new_window=true"></iframe>'
 ]
 
 function App() {
@@ -136,10 +129,12 @@ function App() {
         </div>
       </div>
       <h3>You must disable ad-block to see affiliate links</h3>
+      <h2>Custom Ads</h2>
 
 
       <AmazonAdvertisementCustom divs={divs}>
       </AmazonAdvertisementCustom>
+      <h2>Native Amazon Ads (Recommended)</h2>
       <AmazonAdvertisement></AmazonAdvertisement>
 
       <div className="footer">
